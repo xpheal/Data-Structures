@@ -1,20 +1,21 @@
 public class testArraylist{
 	public static void main(String args[]){
-		int size = 0;
+		int size = 20;
 
 		arraylist test1 = new arraylist(size);
 
-		// for(int i = 0, j = 20; i < j; i++){
-		// 	if(!test1.insert(((i + 143)) * 5 % 43)){
-		// 		System.out.println("Array is full");
-		// 	}
-		// }
+		for(int i = 0, j = 20; i < j; i++){
+			if(!test1.insert(((i + 143)) * 5 % 43)){
+				System.out.println("Array is full");
+			}
+		}
 
-		// test1.remove(19);
-		// test1.remove(1);
+		System.out.println("Before sort: ");
+		test1.printList();
 
-		System.out.println(test1.getLength());
+		test1.sort();
 
+		System.out.println("After mergesort: ");
 		test1.printList();
 	}
 }

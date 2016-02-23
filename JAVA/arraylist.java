@@ -7,21 +7,61 @@ public class arraylist{
 		array = new int[size];
 	}
 
-	// public void binarysearch(int x){
-	// 	int low
-	// }
+	public void sort(){
+		sort(0, numItem);
+		return;
+	}
 
-	// public int[] sort(int left, int right, int size){
-	// 	if(x.length <= 1){
-	// 		return x;
-	// 	}
 
-	// 	int[] left = 
-	// }
+	// Mergesort
+	public void sort(int offset, int size){
+		if(size <= 1){
+			return;
+		}
 
-	// public void sort(){
-	// 	sort(0, numItem/2);
-	// }
+		sort(offset, size/2);
+		if(size % 2 != 0){
+			sort(offset + size/2, size/2 + 1);
+		}
+		else{
+			sort(offset + size/2, size/2);
+		}
+
+		int i = offset;
+		int j = offset + size/2;
+
+		int[] temp = new int[size];
+		int k = 0;
+
+		while(i < offset + size/2 && j < offset + size){
+			if(array[i] > array[j]){
+				temp[k] = array[j];
+				j++;
+				k++;
+			}
+			else{
+				temp[k] = array[i];
+				i++;
+				k++;
+			}
+		}
+
+		while(i < offset + size/2){
+			temp[k] = array[i];
+			i++;
+			k++;
+		}
+
+		while(j < offset + size){
+			temp[k] = array[j];
+			j++;
+			k++;
+		}
+
+		for(k = 0, i = offset; k < size; k++, i++){
+			array[i] = temp[k];
+		}
+	}
 
 	// Insert integer into array
 	public boolean insert(int x){
@@ -63,13 +103,25 @@ public class arraylist{
 	}
 
 	public void printList(){
-		for(int i = 0, j = numItem; i < j; i++){
-			System.out.println(i + ": " + array[i]);
+		if(isEmpty()){
+			return;
 		}
+		System.out.print("[");
+		for(int i = 0, j = numItem - 1; i < j; i++){
+			System.out.print(array[i] + ",");
+		}
+		System.out.print(array[numItem - 1] + "]\n");
 	}
 
 	public int numItem(){
 		return numItem;
+	}
+
+	public boolean isEmpty(){
+		if(numItem == 0){
+			return true;
+		}
+		return false;
 	}
 
 	public int getLength(){
